@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection</title>
+</head>
+<body>
+    <h1>Edit Link</h1>
+    <form action="/edit/<%=body.id%>" method="POST">
+        <input name="title" placeholder="Title" class="field" value="<%=body.title%>">
+        <input name="description" placeholder="Description" class="field" value="<%=body.description%>">
+        <input name="url" placeholder="url" class="field" value="<%=body.url%>">
+        <button>Edit</button>
+
+        <%if(error){%>
+            <h3><%=error.message%></h3>
+        <%}%>
+
+    </form>
+</body>
+</html>

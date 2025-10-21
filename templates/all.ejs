@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+</head>
+<body>
+    <h1>Links</h1>
+    <a href="/add">Adicionar Links</a>
+
+    <% for(let i = 0; i < links.length; i++){ %>
+        <div id="<%=links[i]._id%>">
+            <form action="/?_method=DELETE" method="POST">
+                <h2><%=links[i].title%></h2>
+                <div><%=links[i].description%></div>
+                <div><%=links[i].url%></div>
+                <input name="id" value="<%=links[i]._id%>" hidden>
+                <button type="submit">Delete</button> <!-- onclick="deleteLink('<%=links[i]._id%>')" -->
+                <a href="/edit/<%=links[i]._id%>">Edit</a>
+            </form>
+        </div>
+    <% } %>
+
+    <!-- <script>
+        function deleteLink(id){
+            fetch("/" + id, {method: "DELETE"}).then(res => {
+                if(res.status == 200){
+                    res.text().then(linkId => {
+                        console.log(linkId);
+                        document.getElementById(linkId).remove();
+                    })
+                }else{
+                    res.json().then(err => {
+                        alert(err.message);
+                    })
+                }
+            })
+        }
+    </script> -->
+</body>
+</html>
