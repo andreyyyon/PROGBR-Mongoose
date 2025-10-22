@@ -4,7 +4,7 @@ const redirect = async (req, res, next) => {
     let title = req.params.title;
 
     try{
-        let doc = await Link.findOne({title})
+        let doc = await Link.findOneAndUpdate({ title }, {$inc: {click: 1}});
         
         if(doc){
             res.redirect(doc.url);
@@ -23,7 +23,7 @@ const addLink = async (req, res) => {
         let doc = await link.save();
         res.redirect("/");
     }catch (error){
-        res.render("index", { error, body: req.body });
+        res.render("add", { error, body: req.body });
     }
 }
 
@@ -83,7 +83,7 @@ const editLink = async (req, res) => {
 
 const loadAdd = async (req, res) => {
     try{
-        res.render("index", { error: false, body: {} });
+        res.render("add", { error: false, body: {} });
     }catch (error){
         res.send(error);
     }
